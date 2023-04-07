@@ -1,0 +1,8 @@
+.searchBarField{
+    color: white;
+}
+.searchbar:hover{
+   position: absolute;
+   z-index: -1;
+   
+}

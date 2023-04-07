@@ -1,0 +1,168 @@
+.contact {
+    height: 400px;
+}
+
+.col-md-3 {
+    background: #ff9b00;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.col-md-9 {
+    background: #fff;
+}
+
+.contact-form label {
+    font-weight: 600;
+}
+
+.BgImg {
+    background-image: url(../images/background_image/background_building.jpg);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}
+
+.btn_login {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 22px;
+    font-weight: 500;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+    border: 0;
+    color: #fff;
+    border-radius: 45px;
+    background-color: #c93b3b;
+    padding: 10px 36px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn_login:hover {
+    background: #ad1818;
+    transition: 0.2s;
+}
+
+.iconIcon {
+    /* border: 2px solid blue; */
+    border: 2px solid;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.companyTExt_hover {
+    color: #2895fe;
+}
+
+.companyTExt_hover:hover {
+    cursor: pointer;
+    color: rgb(56, 56, 182);
+    transition: 0.4s;
+}
+
+.form_togglePassword {
+    display: block;
+    width: 93%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form_togglePassword:hover {
+    display: block;
+    width: 93%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+.form-control {
+    cursor: pointer;
+}
+
+.forgotPassword {}
+
+@media only screen and (min-width: 1024px) {}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {}
+
+@media only screen and (min-width: 960px) and (max-width: 1023px) {}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .form_togglePassword {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.375rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+    .BgImg {
+        display: none;
+    }
+
+    .form-group {
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+    .form_togglePassword {
+        display: block;
+        width: 89%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.375rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+}
