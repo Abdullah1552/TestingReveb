@@ -37,12 +37,15 @@
                                 <div class="col-sm-12 table-responsive pad0">
                                     <table class="table ">
                                         <tr style="background-color: #eeeeee">
-                                            <th scope="col"><input type="checkbox" /> #</th>
+                                            <th scope="col" class="no-report"><input type="checkbox" id="select_all"  name="records[]" /> #</th>
                                             <th>Name</th>
                                             <th>Action</th>
                                         </tr>
                                         <tbody id="get_data">
                                         </tbody>
+                                        <tr>
+                                            <td colspan="8" class="no-report" align="right"> <button type="button" onclick="del_multiple_rec('form','/delete_multiple_unit_type')" class="btn btn-mini btn-danger"><i class="fa fa-trash-o"></i> selected</button></td>
+                                        </tr>
                                     </table>
                                     <div class="pagination-panel pull-right"></div>
 
@@ -101,7 +104,7 @@
                     htmlData='';
                     for(i in data){
                         htmlData+='<tr id="'+data[i].id+'">';
-                        htmlData+='<td><input type="checkbox"> '+(Number(i)+1)+'</td>';
+                        htmlData+='<td><input type="checkbox" class="checkbox"  name="records[]" value="'+data[i].id+'"> '+(Number(i)+1)+'</td>';
                         htmlData+='<td>'+data[i].unit_name+'</td>';
                         htmlData+='<td>';
                         @can('unit_type_edit')
@@ -134,5 +137,12 @@
                 }
             })
         }
+    </script>
+    <script>
+        $(document).ready(function(){
+  $('#select_all').click(function(){
+    $('.checkbox').prop('checked', $(this).prop('checked'));
+  });
+});
     </script>
 @endsection

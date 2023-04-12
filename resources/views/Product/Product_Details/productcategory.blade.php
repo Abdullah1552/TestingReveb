@@ -104,12 +104,16 @@
                                     <div class="col-sm-12 table-responsive " style="padding-top: 25px">
                                         <table class="table table-bordered table2excel">
                                             <tr style="background-color: #eeeeee">
-                                                <th>#</th>
+                                                {{-- <th>#</th> --}}
+                                                <th scope="col" class="no-report"><input type="checkbox" id="select_all"  name="records[]" /> #</th>
                                                 <th>Product Category Name</th>
 
                                                 <th class="noExl">Action</th>
                                             </tr>
                                             <tbody id="get_data"></tbody>
+                                            <tr>
+                                                <td colspan="8" class="no-report" align="right"> <button type="button" onclick="del_multiple_rec('form','/delete_multiple_product_category')" class="btn btn-mini btn-danger"><i class="fa fa-trash-o"></i> selected</button></td>
+                                            </tr>
                                         </table>
                                         <div class="pagination-panel pull-right noExl"></div>
 
@@ -190,7 +194,7 @@
                     htmlData='';
                     for(i in data.data){
                         htmlData+='<tr id="'+data.data[i].id+'">';
-                        htmlData+='<td>'+(Number(i)+1)+'</td>';
+                        htmlData+='<td><input type="checkbox" class="checkbox"  name="records[]" value="'+data.data[i].id+'"> '+(Number(i)+1)+'</td>';
                         htmlData+='<td>'+data.data[i].name+'</td>';
                         htmlData+='<td>';
                         htmlData+='<a class="btn btn-mini btn-primary" href="javascript:void(0)" onclick="edit('+data.data[i].id+')"><i class="fa fa-edit"></i></a>';
@@ -243,5 +247,12 @@
                 }
             });
         });
+    </script>
+    <script>
+        $(document).ready(function(){
+  $('#select_all').click(function(){
+    $('.checkbox').prop('checked', $(this).prop('checked'));
+  });
+});
     </script>
 @endsection

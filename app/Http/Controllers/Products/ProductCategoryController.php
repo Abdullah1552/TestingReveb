@@ -192,4 +192,13 @@ class ProductCategoryController extends Controller
             ], 400);
         }
     }
+
+    //Delete Multiple Record
+
+    public function delete_multiple(Request $request)
+    {
+        foreach ($request->records as $record){
+            $this->destroy(trim($record));
+        }
+    }
 }

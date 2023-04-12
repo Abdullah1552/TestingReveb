@@ -64,7 +64,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Invoice No.</label>
-                                    <input name="invoice_no" class="form-control" placeholder="Invoice No." autocomplete="off"   id="search">
+                                    <input name="invoice_no" class="form-control" placeholder="Invoice No." autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -546,21 +546,12 @@
         $(document).ready(function () {
             get_data();
         });
-        $(document).ready(function() {
-    $('#search').on('keyup', function() {
-        get_data(1); // Trigger the search function with the first page number
-    });
-});
         function get_data(page){
-            $('.loader-bg').show();
-            var searchKeyword = $('#search').val();
             $.ajax({
                 url:'{{url('get_sale_order_invoice')}}?page='+page,
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 type:"POST",
-                data:{
-            "invoice_no": searchKeyword // Pass the search keyword as data
-        },
+                data:$("#form").serialize(),
                 dataType:"JSON",
                 success:function (data) {
 
@@ -603,7 +594,6 @@
                         '</tr>';
                     $("#get_data").html(htmlData);
                     pagination(data.total, data.per_page, data.current_page, data.to ,get_data);
-                    $('.loader-bg').hide();
                 }
             })
         }

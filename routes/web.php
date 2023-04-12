@@ -104,6 +104,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('opening_inventory', OInventoryController::class);
     Route::post('get_opening_inventory', 'OInventoryController@get_data');
     Route::delete('delete_multiple_opening_inventory', 'OInventoryController@delete_multiple');
+    Route::delete('delete_multiple_unit_type', 'UnitTypeController@delete_multiple');
+    Route::delete('delete_multiple_product_category', 'Products\ProductCategoryController@delete_multiple');
     Route::get('print_opening_inventory/{id}','OInventoryController@print_data');
     Route::resource('quotation', QuotationController::class);
     Route::post('get_quotation_details', [App\Http\Controllers\QuotationController::class, 'get_data']);

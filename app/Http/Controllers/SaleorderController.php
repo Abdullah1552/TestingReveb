@@ -306,32 +306,63 @@ class SaleorderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function destroy($id)
+    // {
+    //     $stockDetails=StockDetails::where('SID', $id)->get();
+    //     foreach ($stockDetails as $item)
+    //     {
+
+    //         $is_var=Product::find($item->product_id);
+    //         if ($is_var !== null && $is_var->is_variant == 1) {
+    //             $pq=helpers::updated_stock($item->product_code);
+    //             $variation_data = [
+    //                 'stock_quantity' => $pq+$item->Qty,
+    //             ];
+    //             $variation_id=ProductVariant::where('item_code', $item->product_code)->value('v_id');
+    //         }else{
+    //             $variation_data=[];
+    //             $variation_id=0;
+    //         }
+    //         StockDetails::where('product_code',$item->product_code)->where('SID',$id)->delete();
+    //         if(woo_state()) {
+    //             $wp_qty = helpers::product_updated_stock($item->product_id);
+    //             $wp_id = Product::find($item->product_id)->w_id;
+    //             UpdateWordpressQty::dispatch($wp_id, $variation_id, $variation_data, $wp_qty)
+    //                 ->delay(now()->addSeconds(60));
+    //         }
+    //     }
+    //     SaleInvoice::destroy($id);
+    // }
     public function destroy($id)
+{
+    $stockDetails=StockDetails::where('SID', $id)->get();
+    foreach ($stockDetails as $item)
     {
-        $stockDetails=StockDetails::where('SID', $id)->get();
-        foreach ($stockDetails as $item)
-        {
-            $is_var=Product::find($item->product_id);
-            if($is_var->is_variant==1) {
-                $pq=helpers::updated_stock($item->product_code);
-                $variation_data = [
-                    'stock_quantity' => $pq+$item->Qty,
-                ];
-                $variation_id=ProductVariant::where('item_code', $item->product_code)->value('v_id');
-            }else{
-                $variation_data=[];
-                $variation_id=0;
-            }
-            StockDetails::where('product_code',$item->product_code)->where('SID',$id)->delete();
-            if(woo_state()) {
-                $wp_qty = helpers::product_updated_stock($item->product_id);
-                $wp_id = Product::find($item->product_id)->w_id;
+        $is_var=Product::find($item->product_id);
+        if ($is_var !== null && $is_var == 1) {
+            $pq=helpers::updated_stock($item->product_code);
+            $variation_data = [
+                'stock_quantity' => $pq+$item->Qty,
+            ];
+            $variation_id=ProductVariant::where('item_code', $item->product_code)->value('v_id');
+        }else{
+            $variation_data=[];
+            $variation_id=0;
+        }
+        StockDetails::where('product_code',$item->product_code)->where('SID',$id)->delete();
+        if(woo_state()) {
+            $wp_qty = helpers::product_updated_stock($item->product_id);
+            $product = Product::find($item->product_id);
+            if ($product !== null) {
+                $wp_id = $product->w_id;
                 UpdateWordpressQty::dispatch($wp_id, $variation_id, $variation_data, $wp_qty)
                     ->delay(now()->addSeconds(60));
             }
         }
-        SaleInvoice::destroy($id);
     }
+    SaleInvoice::destroy($id);
+}
+
 
     public function saleByCsv()
     {

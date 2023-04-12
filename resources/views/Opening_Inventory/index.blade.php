@@ -63,12 +63,6 @@
                                         <input type="text" name="dt" class="form-control date" autocomplete="off">
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label> Description</label>
-                                        <input name="pn" class="form-control " placeholder="Search With Inventory Description"   id="search">
-                                    </div>
-                                </div>
                                 <!--col-->
                                 <div class="col-md-3">
                                     <div class="form-group">
@@ -88,7 +82,6 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="col-md-1">
                                     <div class="form-group">
                                         <label style="visibility: hidden">afafffsfafas</label>
@@ -414,21 +407,12 @@
         $(document).ready(function () {
             get_data();
         });
-        $(document).ready(function() {
-    $('#search').on('keyup', function() {
-        get_data(1); // Trigger the search function with the first page number
-    });
-});
         function get_data(page){
-            $('.loader-bg').show();
-            var searchKeyword = $('#search').val();
             $.ajax({
                 url:"{{ url('get_opening_inventory') }}?page="+page,
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 type:"POST",
-                data:{
-            "pn": searchKeyword // Pass the search keyword as data
-        },
+                data:$("#form").serialize(),
                 dataType:"JSON",
                 success:function (data) {
                     htmlData='';
@@ -464,8 +448,6 @@
                     htmlData+='</tr>';
                     $("#get_data").html(htmlData);
                     pagination(data.total, data.per_page, data.current_page, data.to ,get_data);
-                    $('.loader-bg').hide();
-
                 }
             })
         }

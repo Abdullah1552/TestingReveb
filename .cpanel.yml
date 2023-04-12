@@ -1,0 +1,6 @@
+
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/revebe57/public_html/
+    - /bin/cp * $DEPLOYPATH

@@ -201,14 +201,11 @@ class OInventoryController extends Controller
             })
             ->when($request->category_id, function ($query) use ($request){
                 $query->where('products.product_category',$request->product_category);
-            })->when($request->pn, function ($query) use ($request) {
-                $query->where('o_inventories.id', 'LIKE', '%' . $request->pn . '%')
-                ->orderBy('o_inventories.id','DESC');
             })->when($request->WHID, function ($query) use ($request){
                 $query->where('where_houses.id',$request->WHID);
             })
             ->groupBy('o_inventories.id')
-            // ->orderBy('o_inventories.id','DESC')
+            ->orderBy('o_inventories.id','DESC')
             ->paginate($per_page);
         return $result;
     }

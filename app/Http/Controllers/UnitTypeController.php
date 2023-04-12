@@ -113,4 +113,11 @@ class UnitTypeController extends Controller
     {
         UnitType::destroy($id);
     }
+
+    public function delete_multiple(Request $request)
+    {
+        foreach ($request->records as $record){
+            $this->destroy(trim($record));
+        }
+    }
 }
